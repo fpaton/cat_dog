@@ -1,4 +1,7 @@
 # cNN
+install.packages("drat", repos="https://cran.rstudio.com")
+drat:::addRepo("dmlc")
+install.packages("mxnet")
 library(pacman)
 pacman::p_load(MXNet, EBImage)
 # MXNet is for the CNN, EBImage for image manipulation
@@ -118,16 +121,16 @@ write.csv(test_28, "test_28.csv",row.names = FALSE)
 rm(list=ls())
 
 # Load MXNet
-require(MXNet)
 
+setwd("~/Documents/Kaggle/CNN presentation")
 # Train test datasets
 train <- read.csv("train_28.csv")
 test <- read.csv("test_28.csv")
 
 # Fix train and test datasets
 train <- data.matrix(train)
-train_x <- t(train[,-1])
-train_y <- train[,1]
+train_x <- t(train[, -1])
+train_y <- train[, 1]
 train_array <- train_x
 dim(train_array) <- c(28, 28, 1, ncol(train_x))
 
@@ -138,7 +141,8 @@ test_array <- test_x
 dim(test_array) <- c(28, 28, 1, ncol(test_x))
 
 # Model
-data <- mx.symbol.Variable('data')
+data <- mxnet::mx.symbol.Variable('data')
+
 # 1st convolutional layer 5x5 kernel and 20 filters.
 conv_1 <- mx.symbol.Convolution(data= data, kernel = c(5,5), num_filter = 20)
 tanh_1 <- mx.symbol.Activation(data= conv_1, act_type = "tanh")
@@ -156,6 +160,7 @@ tanh_3 <- mx.symbol.Activation(data = fcl_1, act_type = "tanh")
 
 # 2nd fully connected layer
 fcl_2 <- mx.symbol.FullyConnected(data = tanh_3, num_hidden = 2)
+
 # Output
 NN_model <- mx.symbol.SoftmaxOutput(data = fcl_2)
 
@@ -180,7 +185,7 @@ model <- mx.model.FeedForward.create(NN_model, X = train_array, y = train_y,
 predict_probs <- predict(model, test_array)
 predicted_labels <- max.col(t(predict_probs)) - 1
 table(test__[,1], predicted_labels)
-sum(diag(table(test__[,1], predicted_labels)))/312
+sum(diag(table(test__[,1], predicted_labels)))/10
 
 
 

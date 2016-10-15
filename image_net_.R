@@ -12,11 +12,8 @@ for (i in 1:length(dogs_100)){
   download.file(dogs_100[i], dog.1, mode = 'wb')
 }
 
-?download.file
-
 setwd("~/Documents/Kaggle/CNN presentation/cat_images")
 cats_urls <- read.table("imagenet.url.cats.txt", stringsAsFactors = FALSE)
-
 cats_100 <- cats_urls[6:30, ]
 
 for (i in 1:length(cats_100)){
