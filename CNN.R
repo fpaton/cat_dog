@@ -11,7 +11,7 @@ pacman::p_load(MXNet, EBImage)
 rm(list=ls())
 require(EBImage)
 
-# Set wd where images are located
+# Set wd where images are leleocated
 setwd("~/Documents/Kaggle/CNN presentation/cat_images")
 # Set d where to save images
 save_in <- "~/Documents/Kaggle/CNN presentation/cat_images/reshape"
