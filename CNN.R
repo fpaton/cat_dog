@@ -22,6 +22,7 @@ w <- 28
 # Set height
 h <- 28
 
+
 # Main loop resize images and set them to greyscale
 for(i in 1:length(images))
 {
