@@ -1,10 +1,10 @@
 
 # Set dir for images: 
-setwd("~/Documents/STAT/kaggle/cat_dog_CNN/dog_images")
+setwd("~/Documents/STAT/kaggle/cat_dog_CNN/cat_images")
 dogUrl <- "http://image-net.org/api/text/imagenet.synset.geturls?wnid=n02084071"
 catUrl <- "http://image-net.org/api/text/imagenet.synset.geturls?wnid=n02121620"
 
-getImagesNet(urlX = dogUrl, size = 1000, image_name = "dog" )
+getImagesNet(urlX = catUrl, size = 1000, image_name = "cat" )
 
 getImagesNet <- function(urlX, size, image_name){
   # this function downloads images and deletes missing images:
